@@ -1,5 +1,6 @@
 class Venue < ActiveRecord::Base
   has_and_belongs_to_many :bands
+  before_create(:capitalize_name)
 
   private
   define_method(:capitalize_name) {
