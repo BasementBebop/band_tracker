@@ -25,3 +25,17 @@ delete '/bands/:id' do
   @band.destroy()
   redirect "/"
 end
+
+post '/venues' do
+  name = params.fetch "venue_name"
+  Venue.create({:name => name})
+  redirect back
+end
+
+patch '/bands/:id' do
+  @band = Band.find(params.fetch("id").to_i)
+  venue_ids = params.fetch("venue_ids")
+  @band.update({:venue_ids => venue_ids})
+  @venues = Venue.all
+  redirect back
+end
