@@ -1,6 +1,6 @@
 class AddBandVenueTable < ActiveRecord::Migration
   def change
-      create_table(:band_venue) { |t|
+      create_table(:bands_venues) { |t|
         t.column(:band_id, :integer)
         t.column(:venue_id, :integer)
 

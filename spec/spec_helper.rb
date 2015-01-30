@@ -1,8 +1,18 @@
-source "https://rubygems.org"
+ENV['RACK_ENV'] = 'test'
+require("bundler/setup")
+Bundler.require(:default, :test)
 
-gem "rspec"
-gem "sinatra"
-gem "sinatra-contrib"
-gem "sinatra-activerecord"
-gem "rake"
-gem "shoulda-matchers"
+Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
+
+RSpec.configure { |config|
+  config.after(:each) { |config|
+
+    Band.all.each { |band|
+      band.destroy
+    }
+
+    Venue.all.each { |venue|
+      venue.destroy
+    }
+  }
+}

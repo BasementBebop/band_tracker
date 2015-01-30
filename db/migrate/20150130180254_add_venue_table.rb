@@ -1,6 +1,6 @@
 class AddVenueTable < ActiveRecord::Migration
     def change
-      create_table(:venue) { |t|
+      create_table(:venues) { |t|
         t.column(:name, :string)
 
         t.timestamps
